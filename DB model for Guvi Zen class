@@ -1,0 +1,42 @@
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50) NOT NULL,
+    StudentEmail VARCHAR(100) UNIQUE NOT NULL,
+    StudentNumber VARCHAR(15) UNIQUE NOT NULL,
+    -- Add any other relevant student details
+    
+    -- Assuming marks and attendance are recorded per session or class
+    -- You might need to adjust based on your actual requirements
+    Marks INT,
+    Attendance INT
+);
+
+CREATE TABLE Classes (
+    ClassID INT PRIMARY KEY,
+    ClassName VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE ClassSessions (
+    SessionID INT PRIMARY KEY,
+    ClassID INT,
+    SessionDate DATE,
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+);
+
+CREATE TABLE StudentAttendance (
+    AttendanceID INT PRIMARY KEY,
+    StudentID INT,
+    SessionID INT,
+    IsPresent BOOLEAN,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (SessionID) REFERENCES ClassSessions(SessionID)
+);
+
+CREATE TABLE StudentMarks (
+    MarksID INT PRIMARY KEY,
+    StudentID INT,
+    SessionID INT,
+    Marks INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (SessionID) REFERENCES ClassSessions(SessionID)
+);
