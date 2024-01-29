@@ -3,11 +3,9 @@ CREATE TABLE Students (
     StudentName VARCHAR(50) NOT NULL,
     StudentEmail VARCHAR(100) UNIQUE NOT NULL,
     StudentNumber VARCHAR(15) UNIQUE NOT NULL,
-    -- Add any other relevant student details
     
     -- Assuming marks and attendance are recorded per session or class
-    -- You might need to adjust based on your actual requirements
-    Marks INT,
+       Marks INT,
     Attendance INT
 );
 
